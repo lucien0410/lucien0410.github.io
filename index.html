@@ -7,4 +7,120 @@
 <h1> I am not familiar with html ... </h1>  
 <a href="https://github.com/lucien0410/lucien0410.github.io/blob/master/15_puzzle.html">A toy game written in Javascript</a>
 </body>
+  
+<head>
+<title>Yuan-Lu's 15 PUZZLE</title>
+<style>
+td:hover {
+    background-color: yellow
+}
+td { font-size: 200%;  
+     border: 1px solid blue; 
+     padding: 10px
+}
+</style>
+<script>
+var num = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+/**  borrowing from "http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array"
+ * Randomize array element order in-place.
+ * Using Durstenfeld shuffle algorithm.
+ */
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
+var items = document.getElementsByTagName('td');
+//function assignV(){for (var i = 0; i <= items.length; i++) {
+//    if(i<=14){items[i].innerHTML = num[i];
+//	}}};
+function shuffleV(){shuffleArray(num);
+	empty=16;
+	moveable=[((empty+1)),((empty-1)),((empty+4)),((empty-4))];
+	for (var i=0; i< 15; i++) {
+	items[i].innerHTML=num[i]}; 
+	items[15].innerHTML=""}
+//function shuffleV(){shuffleArray(num);
+//	empty=16;
+//	moveable=[((empty+1)),((empty-1)),((empty+4)),((empty-4))];
+//	for (var i=0; i< 15; i++) {items[i].innerHTML=num[i]}; items[15].innerHTML=""}
+    	
+var empty=16;
+var moveable=[empty+1,empty-1,empty+4,empty-4];
+function move(oo) {
+   oo.innerHTML = "";
+	
+}
+function reload(){
+	document.getElementById(16).innerHTML="";
+	for (var i=1; i<16; i++){
+	document.getElementById(i).innerHTML=i
+	}
+}
+//function assign_empty(){for (var i = 0; i <= items.length; i++){
+//	if( items[i].parentElement.rowIndex==empty[0] && items[i].cellIndex==empty[1] ) { 
+//	items[i].innerHTML=vv	
+//	}}}
+function move(e){
+	var pp=Number(e.id);
+	if (moveable.indexOf(pp) > -1){  //if e is in the moveale arrary
+	var temp=e.innerHTML;
+	e.innerHTML="";	
+	document.getElementById(empty).innerHTML=temp;			
+	empty=Number(e.id);
+	moveable=[empty+1,empty-1,empty+4,empty-4];
+	var items = document.getElementsByTagName('td');
+	var num = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+	var count=0; 
+	//alert(count);	
+	for (var i = 0; i <=14 ; i++){if(items[i].innerHTML==num[i]){count++}};	
+	//alert(count);	
+	if (count>=15){alert("Succeeded!")};					
+	}
+}
+//function location_of_empty(e){
+//	e.innerHTML = empty
+//	}
+</script>
+</head>
+<body>
+<h1>Yuan-Lu's 15 Puzzle!</h1>
+<button onclick="reload()" type "button">RESET</button>
+<button onclick="shuffleV()" type "button">shuffle</button>
+
+<table id="puzzle">
+<tr>
+    <td id="1" onclick="move(this)">1</td>  
+    <td id="2" onclick="move(this)">2</td>
+    <td id="3" onclick="move(this)">3</td>
+    <td id="4" onclick="move(this)">4</td> 	
+</tr>
+<tr>
+    <td id="5" onclick="move(this)">5</td>  
+    <td id="6" onclick="move(this)">6</td>
+    <td id="7" onclick="move(this)">7</td>
+    <td id="8" onclick="move(this)">8</td> 	
+</tr>
+<tr>
+    <td id="9" onclick="move(this)">9</td>  
+    <td id="10" onclick="move(this)">10</td>
+    <td id="11" onclick="move(this)">11</td>
+    <td id="12" onclick="move(this)">12</td> 	
+</tr>
+<tr>
+    <td id="13" onclick="move(this)">13</td>  
+    <td id="14" onclick="move(this)">14</td>
+    <td id="15" onclick="move(this)">15</td>
+    <td id="16" onclick="move(this)"></td> 
+    <!-- <td onmouseover="location_of_empty(this)">3,3</td> 	-->		
+</tr>
+
+
+
+
+</body>  
 </html>
